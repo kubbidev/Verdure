@@ -1,0 +1,7 @@
+[versions]
+shadow = "8.1.7"
+loom = "1.6-SNAPSHOT"
+
+[plugins]
+shadow = { id = "io.github.goooler.shadow", version.ref = "shadow" }
+loom = { id = "fabric-loom", version.ref = "loom" }

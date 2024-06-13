@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "package": "me.kubbidev.verdure.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+
+  ],
+  "client": [
+
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

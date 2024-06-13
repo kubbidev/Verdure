@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "id": "verdure",
+  "version": "${version}",
+  "name": "Verdure",
+  "icon": "assets/verdure/icon.png",
+  "description": "Verdure adds new blocks, models, and textures and overhauls the Minecraft aesthetic. Use this mod to take your builds to the next level of detail and realism!",
+  "authors": [
+    {
+      "name": "kubbidev",
+      "contact": {
+        "sources": "https://github.com/kubbidev",
+        "homepage": "https://kubbidev.com"
+      }
+    }
+  ],
+  "license": "APACHE-2.0",
+  "contact": {
+    "homepage": "https://kubbidev.com",
+    "sources": "https://github.com/kubbidev/Verdure.git",
+    "issues": "https://github.com/kubbidev/Verdure/issues"
+  },
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "me.kubbidev.verdure.Verdure"
+    ],
+    "client": [
+      "me.kubbidev.verdure.VerdureClient"
+    ]
+  },
+  "mixins": [
+    "verdure.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.15.11",
+    "minecraft": "~1.21",
+    "java": ">=21",
+    "fabric-api": "*"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}
