@@ -7,27 +7,22 @@ plugins {
     alias(libs.plugins.loom)
 }
 
+// store the version as a variable,
+// as we use it several times
+val fullVersion = "1.0.0"
+
+// project settings
+group = "me.kubbidev"
+version = "1.0-SNAPSHOT"
+
 base {
     archivesName.set("verdure")
 }
 
-// make fullVersion accessible in subprojects
-project.extra["fullVersion"] = "1.0.0"
-project.extra["apiVersion"] = "1.0"
-
-// project settings
-group = "me.kubbidev"
-version = "${project.extra["apiVersion"]}-SNAPSHOT"
-
-java.sourceCompatibility = JavaVersion.VERSION_21
-java.targetCompatibility = JavaVersion.VERSION_21
-
-tasks.withType<JavaCompile> {
-    options.encoding = "UTF-8"
-}
-
-// repositories and dependencies manager
 java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+    // include source in when publishing
     withSourcesJar()
 }
 
@@ -55,16 +50,20 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok:1.18.32")
 }
 
+tasks.withType<JavaCompile> {
+    options.encoding = "UTF-8"
+}
+
 // building task operations
 tasks.processResources {
-    inputs.property("version", project.extra["fullVersion"])
+    inputs.property("version", fullVersion)
     filesMatching("**/fabric.mod.json") {
-        expand("version" to project.extra["fullVersion"])
+        expand("version" to fullVersion)
     }
 }
 
 tasks.shadowJar {
-    archiveFileName = "verdurefabric-${project.extra["fullVersion"]}-dev.jar"
+    archiveFileName = "verdurefabric-${fullVersion}-dev.jar"
 
     dependencies {
         include(dependency("me.kubbidev.verdure:.*"))
@@ -90,8 +89,8 @@ val remappedShadowJar by tasks.registering(RemapJarTask::class) {
     inputFile = tasks.shadowJar.flatMap {
         it.archiveFile
     }
-    addNestedDependencies = true;
-    archiveFileName = "Verdure-Fabric-${project.extra["fullVersion"]}.jar"
+    addNestedDependencies = true
+    archiveFileName = "Verdure-Fabric-${fullVersion}.jar"
 }
 
 tasks.assemble {
